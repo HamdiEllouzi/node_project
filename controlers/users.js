@@ -43,16 +43,32 @@ exports.login = (req, res, next) => {
             }),
           });
         })
-        .catch((err) => res.status(500).json({ err: 'compare error' }));
+        .catch((err) => res.status(500).json({ err: 'compare error', err }));
     })
-    .catch((err) => res.status(500).json({ err: 'find error' }));
+    .catch((err) => res.status(401).json({ error: 'user not found' }));
 };
 
-exports.editeUser = (req, res) => {
+exports.updatePhoto = (req, res) => {
+  userImage = `${req.protocol}://${req.get('host')}/images/${
+    req.file.filename
+  }`;
   userSchema
-    .findOneAndUpdate({ _id: req.body.userId }, req.body)
+    .findOneAndUpdate(
+      { _id: req.userId },
+      { userImage },
+      { returnOriginal: false },
+    )
     .then((user) => {
-      res.status(201).json({ message: 'user Updated' });
+      res.status(201).json({ message: 'Image Updated', user });
     })
-    .catch((err) => res.status(500).json({ err: 'find error' }));
+    .catch((err) => res.status(500).json({ err: 'find error', err }));
+};
+
+exports.updateUser = (req, res) => {
+  userSchema
+    .findOneAndUpdate({ _id: req.userId }, req.body, { returnOriginal: false })
+    .then((user) => {
+      res.status(201).json({ message: 'user Updated', user });
+    })
+    .catch((err) => res.status(500).json({ err: 'find error', err }));
 };
