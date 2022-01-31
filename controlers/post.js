@@ -14,7 +14,7 @@ exports.createPost = (req, res, next) => {
       like: [],
       likeNumber: 0,
       publishDate: date,
-      commentNumber: 0,
+      commentsNumber: 0,
     });
     newPost
       .save()
@@ -37,7 +37,6 @@ exports.deletePost = (req, res, next) => {
   postSchema
     .findOne({ _id: postId })
     .then((post) => {
-      console.log(req.userId);
       if (post.userId.toString() != req.userId) {
         res.status(401).json({ message: 'request not authorized' });
       }
@@ -55,4 +54,36 @@ exports.deletePost = (req, res, next) => {
         });
     })
     .catch((err) => res.status(400).json({ message: 'error on delete', err }));
+};
+
+exports.handeLike = (req, res, next) => {
+  const userId = new mongoose.Types.ObjectId(req.userId);
+  postSchema
+    .findById(req.body.postId)
+    .then((post) => {
+      if (post.like.includes(userId)) {
+        post.like.pull(userId);
+        post.likeNumber -= 1;
+        post
+          .save()
+          .then((post) => {
+            res.status(201).json({ post, message: 'I like it' });
+          })
+          .catch((err) => {
+            res.status(500).json({ err });
+          });
+      } else {
+        post.like.push(userId);
+        post.likeNumber += 1;
+        post
+          .save()
+          .then((post) => {
+            res.status(201).json({ post, message: 'I dislike it' });
+          })
+          .catch((err) => {
+            res.status(500).json({ err });
+          });
+      }
+    })
+    .catch((err) => res.status(400).json({ err, message: 'wrong Post ID' }));
 };

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userRouter = require('./routes/users');
 const postRouter = require('./routes/posts');
+const commentRouter = require('./routes/comments');
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
@@ -24,6 +25,7 @@ app.use(cors());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api', userRouter);
 app.use('/api', postRouter);
+app.use('/api', commentRouter);
 
 app.listen(port, () => {
   console.log(`listen to port at ${port}`);
