@@ -6,8 +6,13 @@ exports.createConversation = async (req, res) => {
     members: [req.userId, req.body.receiverId],
   });
   try {
-    const saveConversation = await newConversation.save();
-    res.status(201).json(saveConversation);
+    const conv = await conversationSchema.find({ members: [req.userId, req.body.receiverId] });
+    if (conv.length !== 0) {
+      res.status(400).json({ message: "conversation already exists" });
+    } else {
+      const saveConversation = await newConversation.save();
+      res.status(201).json(saveConversation);
+    }
   } catch (error) {
     res.status(500).json(error);
   }
@@ -26,7 +31,6 @@ exports.getConversation = async (req, res) => {
 
 exports.deleteConversation = async (req, res, next) => {
   const conversationId = req.params.conversationId;
-  console.log(req.params.conversationId);
   try {
     const conversation = await conversationSchema.findById(conversationId);
     if (!conversation) throw "Conversation not found";

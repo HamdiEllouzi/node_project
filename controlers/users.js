@@ -88,3 +88,27 @@ exports.getUser = async (req, res) => {
     res.status(400).json({ error });
   }
 };
+
+exports.searchUser = async (req, res) => {
+  try {
+    const result = await userSchema.aggregate([
+      {
+        $match: {
+          $or: [
+            { userFirstName: { $regex: req.query.userName, $options: "i" } },
+            { userLastName: { $regex: req.query.userName, $options: "i" } },
+          ],
+        },
+      },
+      {
+        $project: {
+          password: 0,
+          __v: 0,
+        },
+      },
+    ]);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+};
