@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
 });
 
 mongoose
-  .connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URL || dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Database connection successful");
   })
@@ -73,17 +73,16 @@ mongoose
     console.error("Database connection error");
   });
 
-/*
 const db = mongoose.connection;
 db.once("open", () => {
   console.log("connect");
   const messageCollection = db.collection("messages");
   const ChangeStream = messageCollection.watch();
 
-  // ChangeStream.on("change", (change) => {
-  //   console.log(change);
-  // });
-});*/
+  ChangeStream.on("change", (change) => {
+    console.log(change);
+  });
+});
 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "images")));
@@ -92,6 +91,11 @@ app.use("/api/posts", postRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/conversation", conversationRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("./client/build"));
+}
+
 server.listen(port, () => {
   console.log(`listen to port at ${port}`);
 });

@@ -1,0 +1,32 @@
+.drop-list li {
+  border: none;
+  padding: 0;
+  color: white;
+  margin: 5px 5px;
+  cursor: pointer;
+}
+
+.drop-list li a {
+  width: 100%;
+  display: block;
+}
+
+.drop-list li:hover {
+  background: #ececec;
+}
+
+.item {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+}
+
+.icon-img {
+  width: 25px;
+  height: 25px;
+}
+
+.text {
+  color: #333;
+}

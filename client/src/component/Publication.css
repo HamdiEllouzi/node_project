@@ -1,0 +1,225 @@
+.commentBox {
+    margin-top: 40px;
+    padding: 0px 0px 20px 0px;
+    border-radius: 20px;
+    background: #1b212d;
+    width: 98%;
+}
+.addPublication_contnair {
+    position: absolute;
+    width: 60%;
+    height: 70%;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    max-height: 450px;
+}
+.post_content,
+.post_page {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.post {
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    width: 94%;
+    margin-bottom: 10px;
+}
+.close {
+    align-self: flex-end;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.postBody {
+    display: flex;
+}
+.postHeader {
+    display: flex;
+    align-items: center;
+}
+.publishDate {
+    color: #787878;
+    margin-left: 15px;
+}
+.postDesc {
+    margin-top: 15px;
+}
+.post .like_button {
+    border: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+.add_container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.add_button {
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: large;
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    color: darkgreen;
+}
+i {
+    color: #fc6f20;
+    padding-right: 5px;
+}
+
+@keyframes hearts {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.postText {
+    font-weight: 500;
+}
+.desc {
+    margin-right: 20px;
+}
+.comment {
+    padding: 10px;
+    margin: 20px 30px;
+    color: #fff;
+}
+form {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+h2 {
+    margin: 0;
+    margin-bottom: 5px;
+}
+h3 {
+    margin: 0;
+}
+input {
+    font-family: "Darker Grotesque", sans-serif;
+    font-size: 18px;
+    border-radius: 15px;
+    border: 1px solid #787878;
+    padding: 5px 5px 5px 10px;
+    transition: 0.2s;
+}
+.post_page input:focus {
+    outline: none;
+    border: 1px solid #fc6f20;
+}
+input::placeholder {
+    color: #bebebe;
+}
+.input_publication {
+    font-family: "Darker Grotesque", sans-serif;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: 1px solid #787878;
+    padding: 5px 5px 5px 10px;
+    height: 114px;
+    transition: 0.2s;
+    width: 95%;
+    box-sizing: border-box;
+    resize: none;
+}
+.input_comment{
+    font-family: "Darker Grotesque", sans-serif;
+    border: 1px solid #787878;
+    box-sizing: border-box;
+    transition: 0.2s;
+    border-radius: 15px;
+    padding: 5px 5px 5px 10px;
+    height: 31px;
+    resize: none;
+}
+.btn_comment {
+    width: 55px;
+    border-radius: 25px;
+    background-color: greenyellow;
+    border: none;
+    margin-left: auto;
+    margin-top: 10px;
+}
+textarea:focus {
+    outline: none;
+    border: 1px solid #fc6f20;
+}
+textarea::placeholder {
+    color: #bebebe;
+}
+.post_page .post_button {
+    font-family: "Darker Grotesque", sans-serif;
+    color: #054231;
+    width: 160px;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px;
+    padding-top: 7px;
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    background: #fc6f20;
+    align-self: center;
+    margin-top: 80px;
+    box-shadow: 0px 5px 0px 0px #fc6f207a;
+}
+.post_page button:hover {
+    box-shadow: none;
+    transform: translateY(5px);
+    transition: all 0.1s linear;
+}
+.post_page button:focus {
+    outline: none;
+}
+.post_page img {
+    max-width: 90px;
+    width: 100%;
+    height: 100%;
+    margin-right: 15px;
+    border-radius: 10px;
+}
+.comment {
+    display: flex;
+}
+.commentPic {
+    max-width: 45px;
+    max-height: 45px;
+}
+.commentHeader {
+    display: flex;
+    align-items: center;
+}
+.commentBody {
+    max-width: 580px;
+    overflow-wrap: break-word;
+}
+.fa-instagram {
+    position: absolute;
+    color: #fc6f20;
+    top: 3%;
+    right: 2%;
+    font-size: 38px;
+}
+.fa-instagram:hover {
+    font-size: 42px;
+    color: #fff;
+    transition: all 0.1s linear;
+    cursor: pointer;
+}
